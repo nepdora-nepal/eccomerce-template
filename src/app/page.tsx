@@ -1,6 +1,4 @@
-import ImageWithFallback
-  from "@/components/common/ImageWithFallback";
-import { getImageUrl } from "@/config/site";
+import ImageWithFallback from "@/components/common/ImageWithFallback";
 import images from "@/data/images.json";
 const HomePage: React.FC = () => {
   return (
@@ -13,7 +11,7 @@ const HomePage: React.FC = () => {
           Build Your Free Website Now
         </h2>
         <ImageWithFallback
-          src={getImageUrl(images.hero)}
+          src={images.hero}
           fallbackSrc={images.hero}
           alt="random-images"
           height={80}
