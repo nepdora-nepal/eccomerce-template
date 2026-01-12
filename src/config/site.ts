@@ -25,10 +25,11 @@ export const siteConfig = {
     return {
       fetchImage: (path: string) =>
         `${this.mediaBaseUrl}/${path.startsWith("/") ? path.slice(1) : path}`,
-      listImages: () => `${builderBase}/builder/images-map/${TENANT_NAME}/`,
+      listImages: () => `${builderBase}/api/builder/images-map/${TENANT_NAME}/`,
       updateImageMap: () =>
-        `${builderBase}/builder/update-image-map/${TENANT_NAME}/`,
-      uploadImage: () => `${builderBase}/builder/upload-image/${TENANT_NAME}/`,
+        `${builderBase}/api/builder/update-image-map/${TENANT_NAME}/`,
+      uploadImage: () =>
+        `${builderBase}/api/builder/upload-image/${TENANT_NAME}/`,
     };
   },
 };
