@@ -12,7 +12,7 @@ export const siteConfig = {
   get mediaBaseUrl() {
     return (
       process.env.NEXT_PUBLIC_MEDIA_URL ||
-      `https://nepdora.baliyoventures.com/media/workspaces/${TENANT_NAME}/public`
+      `https://builder-api.nepdora.com/media/workspaces/${TENANT_NAME}/public`
     );
   },
   get builderBaseUrl() {
