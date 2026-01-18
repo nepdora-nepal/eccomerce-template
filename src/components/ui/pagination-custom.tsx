@@ -1,6 +1,7 @@
 "use client";
 
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface PaginationProps {
     currentPage: number;
@@ -28,39 +29,44 @@ export default function Pagination({
 
     return (
         <div className="flex items-center justify-center gap-2 mt-16 scale-90 sm:scale-100">
-            <button
+            <Button
+                variant="outline"
+                size="icon"
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="p-3 rounded-2xl bg-card border border-border/50 shadow-sm text-muted-foreground hover:text-primary hover:border-primary/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                className="p-3 rounded-2xl bg-card border border-border/50 shadow-sm text-muted-foreground hover:text-primary hover:border-primary/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all h-auto w-auto"
             >
                 <ChevronLeft size={20} />
-            </button>
+            </Button>
 
             <div className="flex items-center gap-1.5 bg-secondary/50 p-1.5 rounded-[2rem] border border-border/20">
                 {getVisiblePages().map((page, index) => (
-                    <button
+                    <Button
+                        variant="ghost"
                         key={index}
                         onClick={() => typeof page === 'number' ? onPageChange(page) : null}
                         disabled={page === '...'}
                         className={`min-w-[44px] h-[44px] flex items-center justify-center rounded-full text-xs font-black transition-all ${page === currentPage
-                            ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20"
+                            ? "bg-primary text-primary-foreground shadow-xl shadow-primary/20 hover:bg-primary/90 hover:text-primary-foreground"
                             : page === '...'
-                                ? "text-muted-foreground/30 cursor-default"
+                                ? "text-muted-foreground/30 cursor-default hover:bg-transparent"
                                 : "text-muted-foreground hover:bg-card hover:text-primary hover:shadow-sm"
                             }`}
                     >
                         {page}
-                    </button>
+                    </Button>
                 ))}
             </div>
 
-            <button
+            <Button
+                variant="outline"
+                size="icon"
                 onClick={() => onPageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="p-3 rounded-2xl bg-card border border-border/50 shadow-sm text-muted-foreground hover:text-primary hover:border-primary/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
+                className="p-3 rounded-2xl bg-card border border-border/50 shadow-sm text-muted-foreground hover:text-primary hover:border-primary/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all h-auto w-auto"
             >
                 <ChevronRight size={20} />
-            </button>
+            </Button>
         </div>
     );
 }

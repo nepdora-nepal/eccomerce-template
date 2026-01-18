@@ -1,5 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
 
 export type BuildConfirmUrlOptions = {
   confirmPageUrl: string;
@@ -93,8 +94,8 @@ export const LocationLinkButton: React.FC<LocationLinkButtonProps> = ({
   };
 
   return (
-    <button type="button" onClick={onClick} className={className} style={style}>
+    <Button type="button" onClick={onClick} className={className} style={style}>
       {label}
-    </button>
+    </Button>
   );
 };

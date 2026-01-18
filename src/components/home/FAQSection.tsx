@@ -50,11 +50,11 @@ export const FAQSection = () => {
                                 </span>
                                 <div className={cn(
                                     "w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300",
-
+                                    openIndex === index ? "rotate-180" : ""
                                 )}>
                                     <ChevronDown size={20} />
                                 </div>
-                            </button>
+                            </Button>
                             <div
                                 className={cn(
                                     "overflow-hidden transition-all duration-300 ease-in-out",
