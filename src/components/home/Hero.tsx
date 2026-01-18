@@ -4,6 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import { ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 export const Hero: React.FC = () => {
     const router = useRouter();
@@ -11,8 +12,11 @@ export const Hero: React.FC = () => {
     return (
         <section className="relative h-[80vh] min-h-[600px] flex items-center overflow-hidden bg-slate-50">
             <div className="absolute inset-0 z-0">
-                <img
+                <ImageWithFallback
+                    id="hero-background"
                     src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+                    fallbackSrc="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=1600&q=80"
+                    fill
                     className="w-full h-full object-cover opacity-20"
                     alt="Hero background"
                 />

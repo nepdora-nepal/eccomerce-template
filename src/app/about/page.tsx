@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Shield, Sparkles, Heart, Zap } from 'lucide-react';
+import ImageWithFallback from '@/components/common/ImageWithFallback';
 
 const AboutPage = () => {
     return (
@@ -12,7 +13,7 @@ const AboutPage = () => {
                 </span>
                 <h1 className="text-4xl md:text-6xl font-black text-slate-900 mt-6 mb-8">Redefining Modern <span className="text-indigo-600">Shopping</span></h1>
                 <p className="text-xl text-slate-500 max-w-3xl mx-auto leading-relaxed">
-                    Lumina was born out of a desire for quality. We curate items that aren't just beautiful, but built to last and designed to inspire.
+                    Lumina was born out of a desire for quality. We curate items that aren&apos;t just beautiful, but built to last and designed to inspire.
                 </p>
             </section>
 
@@ -20,7 +21,15 @@ const AboutPage = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div className="relative">
                         <div className="absolute -top-10 -left-10 w-40 h-40 bg-indigo-100 rounded-full blur-3xl opacity-50"></div>
-                        <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80" alt="Team" className="rounded-3xl shadow-2xl relative z-10" />
+                        <ImageWithFallback
+                            id="about-team"
+                            src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+                            fallbackSrc="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80"
+                            width={800}
+                            height={600}
+                            alt="Team"
+                            className="rounded-3xl shadow-2xl relative z-10"
+                        />
                         <div className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl z-20 border border-slate-100">
                             <p className="text-4xl font-black text-indigo-600">10k+</p>
                             <p className="text-sm font-bold text-slate-500 uppercase tracking-widest">Happy Customers</p>
@@ -29,7 +38,7 @@ const AboutPage = () => {
                     <div className="space-y-8">
                         <h2 className="text-3xl font-bold text-slate-900">Why Lumina Exists</h2>
                         <p className="text-slate-600 leading-relaxed">
-                            In a world of fast consumption, we chose the slow path. We believe that every object in your home should tell a story of craftsmanship and intentionality. That's why we spend months vetting every single supplier and product on our platform.
+                            In a world of fast consumption, we chose the slow path. We believe that every object in your home should tell a story of craftsmanship and intentionality. That&apos;s why we spend months vetting every single supplier and product on our platform.
                         </p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                             <div className="p-6 bg-slate-50 rounded-2xl border border-slate-100">
@@ -61,7 +70,7 @@ const AboutPage = () => {
                 <div className="max-w-4xl mx-auto space-y-8">
                     <span className="text-indigo-400 font-bold tracking-widest uppercase text-xs mb-2 block">Looking Forward</span>
                     <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">Our Vision</h2>
-                    <h3 className="text-2xl md:text-4xl font-bold leading-tight">"To become the world's most curated marketplace for premium lifestyle goods, empowering artisans and delighting customers."</h3>
+                    <h3 className="text-2xl md:text-4xl font-bold leading-tight">&quot;To become the world&apos;s most curated marketplace for premium lifestyle goods, empowering artisans and delighting customers.&quot;</h3>
                     <div className="w-20 h-1 bg-indigo-500 mx-auto"></div>
                     <p className="text-slate-400">By 2030, we aim to eliminate plastic waste from our entire shipping supply chain and support over 1,000 independent designers globally.</p>
                 </div>
