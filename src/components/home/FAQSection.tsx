@@ -12,7 +12,7 @@ export const FAQSection = () => {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-20 md:py-32 px-4 max-w-4xl mx-auto bg-background">
+        <section className="py-20 md:py-32 px-4 max-w-4xl mx-auto ">
             <div className="text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest mb-6">
                     <HelpCircle size={14} /> Common Questions
@@ -34,9 +34,6 @@ export const FAQSection = () => {
                             key={faq.id}
                             className={cn(
                                 "group rounded-3xl border transition-all duration-300",
-                                openIndex === index
-                                    ? "bg-primary/5 border-primary/20 shadow-lg shadow-primary/5"
-                                    : "bg-card border-border hover:border-primary/20 hover:bg-secondary/30"
                             )}
                         >
                             <button
@@ -51,7 +48,7 @@ export const FAQSection = () => {
                                 </span>
                                 <div className={cn(
                                     "w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-300",
-                                    openIndex === index ? "bg-primary text-primary-foreground rotate-180" : "bg-secondary text-muted-foreground/50 group-hover:bg-primary/10 group-hover:text-primary"
+
                                 )}>
                                     <ChevronDown size={20} />
                                 </div>
@@ -71,11 +68,6 @@ export const FAQSection = () => {
                 )}
             </div>
 
-            <div className="mt-16 text-center">
-                <p className="text-muted-foreground">
-                    Still have questions? <a href="/contact" className="text-primary font-bold hover:underline">Contact our support team</a>
-                </p>
-            </div>
         </section>
     );
 };
