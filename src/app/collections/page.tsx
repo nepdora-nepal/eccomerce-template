@@ -44,7 +44,7 @@ function ProductListingContent() {
         <div className="min-h-screen bg-white">
             <div className="py-12 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col gap-12 lg:flex-row">
-                    <aside className="hidden lg:block lg:w-80 flex-shrink-0 lg:sticky lg:top-24 self-start max-h-[calc(100vh-7rem)] overflow-y-auto pr-4 scrollbar-hide">
+                    <aside className="hidden lg:block lg:w-80 flex-shrink-0 lg:sticky lg:top-24 self-start z-20">
                         <div className="space-y-8">
                             <AppliedFilters
                                 selectedCategory={selectedCategory}

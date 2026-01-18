@@ -35,7 +35,7 @@ const ContactPage = () => {
                     <div className="lg:col-span-5 space-y-12">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                             {[
-                                { title: "Emails Us", value: "concierge@lumina.com", sub: "Response within 24 hours" },
+                                { title: "Emails Us", value: "concierge@SastoBazaar.com", sub: "Response within 24 hours" },
                                 { title: "Call Us", value: "+1 (555) 000-0000", sub: "Mon-Fri, 9am - 6pm EST" },
                                 { title: "Visit Us", value: "721 Luxury Ave, NY", sub: "Flagship Showroom" },
                                 { title: "Support Hours", value: "24/7 Assistance", sub: "For premium members" },

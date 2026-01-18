@@ -73,7 +73,7 @@ const BlogDetailPage = () => {
                                 <User size={20} />
                             </div>
                             <div>
-                                <p className="text-sm font-bold text-foreground">{blog.author?.username || 'Lumina Editor'}</p>
+                                <p className="text-sm font-bold text-foreground">{blog.author?.username || 'SastoBazaar Editor'}</p>
                                 <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest">Chief Correspondent</p>
                             </div>
                         </div>

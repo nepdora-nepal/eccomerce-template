@@ -31,9 +31,9 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
                         <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                            <span className="text-primary-foreground font-bold text-xl italic">L</span>
+                            <span className="text-primary-foreground font-bold text-xl italic">S</span>
                         </div>
-                        <span className="text-2xl font-bold tracking-tight text-foreground hidden sm:block">Lumina<span className="text-primary">.</span></span>
+                        <span className="text-2xl font-bold tracking-tight text-foreground hidden sm:block">SastoBazaar<span className="text-primary">.</span></span>
                     </Link>
 
                     {/* Desktop Nav */}

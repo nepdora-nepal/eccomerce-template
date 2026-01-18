@@ -68,7 +68,7 @@ export default function ProductCard({
     return (
         <div
             className={`relative ${isSpecial ? "aspect-square" : "h-full"
-                } rounded-3xl overflow-hidden transition-all duration-300 border border-border/50 hover:border-primary/20 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/5 flex flex-col bg-card z-0 hover:z-50 group`}
+                } rounded-3xl overflow-hidden transition-all duration-300 border border-border/50 hover:border-primary/20 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/5 flex flex-col bg-card z-0 `}
         >
             <div className="absolute inset-0 border-2 border-border/10 rounded-3xl pointer-events-none group-hover:border-primary/10 transition-colors"></div>
 

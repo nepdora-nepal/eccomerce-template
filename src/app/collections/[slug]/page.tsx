@@ -209,7 +209,7 @@ const ProductDetailsPage = () => {
                                         </div>
                                         <span className="text-xs text-muted-foreground">3 weeks ago</span>
                                     </div>
-                                    <p className="text-muted-foreground text-sm italic">&quot;Absolutely love this! The quality surpassed my expectations. It arrived perfectly packaged and works like a charm. Will definitely be buying more from Lumina.&quot;</p>
+                                    <p className="text-muted-foreground text-sm italic">&quot;Absolutely love this! The quality surpassed my expectations. It arrived perfectly packaged and works like a charm. Will definitely be buying more from SastoBazaar.&quot;</p>
                                 </div>
                             ))}
                             <Button variant="outline" className="border-2 border-border font-bold">Write A Review</Button>

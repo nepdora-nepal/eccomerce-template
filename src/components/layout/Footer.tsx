@@ -12,7 +12,7 @@ export const Footer: React.FC = () => (
                     <div className="w-10 h-10 bg-primary-foreground/10 rounded-xl flex items-center justify-center">
                         <span className="text-primary-foreground font-bold text-xl italic">L</span>
                     </div>
-                    <span className="text-2xl font-bold tracking-tight text-primary-foreground">Lumina<span className="text-primary-foreground/40">.</span></span>
+                    <span className="text-2xl font-bold tracking-tight text-primary-foreground">SastoBazaar<span className="text-primary-foreground/40">.</span></span>
                 </Link>
                 <p className="text-primary-foreground/60 leading-relaxed">
                     Creating premium shopping experiences with a touch of elegance. We deliver only the finest curated collections.
@@ -61,7 +61,7 @@ export const Footer: React.FC = () => (
         </div>
 
         <div className="max-w-7xl mx-auto px-4 pt-8 border-t border-primary-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-            <p>© 2024 Lumina Shop Inc. All rights reserved.</p>
+            <p>© {new Date().getFullYear()} SastoBazaar Shop Inc. All rights reserved.</p>
             <div className="flex gap-6">
                 <Link href="/privacy" className="hover:text-primary-foreground transition-colors">Privacy Policy</Link>
                 <Link href="/terms" className="hover:text-primary-foreground transition-colors">Terms of Service</Link>

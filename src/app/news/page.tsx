@@ -21,7 +21,7 @@ const BlogListingPage = () => {
                 </div>
                 <div className="max-w-7xl mx-auto px-4 relative z-10 text-center">
                     <span className="text-primary-foreground/80 font-bold tracking-widest uppercase text-xs mb-4 block">Insights & Stories</span>
-                    <h1 className="text-4xl md:text-6xl font-black text-primary-foreground mb-6">Lumina <span className="text-primary-foreground/60">Journal</span></h1>
+                    <h1 className="text-4xl md:text-6xl font-black text-primary-foreground mb-6">SastoBazaar <span className="text-primary-foreground/60">Journal</span></h1>
                     <p className="text-primary-foreground/70 text-lg max-w-2xl mx-auto">
                         Explore the latest trends, tips, and updates from the world of premium lifestyle and luxury.
                     </p>

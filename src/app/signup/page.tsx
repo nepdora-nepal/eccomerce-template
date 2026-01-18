@@ -16,7 +16,7 @@ const SignupPage = () => {
                     </Link>
                     <h2 className="text-3xl font-extrabold text-foreground">Create Account</h2>
                     <p className="mt-2 text-sm text-muted-foreground">
-                        Join Lumina and start your premium shopping journey
+                        Join SastoBazaar and start your premium shopping journey
                     </p>
                 </div>
 
