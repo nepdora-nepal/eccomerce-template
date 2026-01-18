@@ -11,7 +11,7 @@ import {
 import { WishlistItem } from "@/types/wishlist";
 
 export const useWishlist = () => {
-  const { tokens, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
 
   return useQuery<WishlistItem[], Error>({
     queryKey: ["wishlist"],
@@ -32,9 +32,11 @@ export const useAddToWishlist = () => {
       });
     },
     onError: (error) => {
-      toast.error("Error", {
-        description: "Could not add item to wishlist. Please try again.",
-      });
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Failed to add item to wishlist");
+      }
     },
   });
 };
@@ -52,9 +54,11 @@ export const useRemoveFromWishlist = () => {
       });
     },
     onError: (error) => {
-      toast.error("Error", {
-        description: "Could not remove item from wishlist. Please try again.",
-      });
+      if (error instanceof Error) {
+        toast.error(error.message);
+      } else {
+        toast.error("Failed to remove item from wishlist");
+      }
     },
   });
 };

@@ -27,6 +27,7 @@ export const SignupForm = () => {
     const onSubmit = async (data: SignupFormValues) => {
         try {
             await signup(data);
+            //eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             if (error.status === 400 && error.data?.error?.params?.field_errors) {
                 const fieldErrors = error.data.error.params.field_errors;

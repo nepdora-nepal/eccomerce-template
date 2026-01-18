@@ -31,7 +31,9 @@ export async function signupUser(data: SignupData): Promise<SignupResponse> {
     const errorData = await response.json();
     // Throw a structured error object
     const error = new Error(errorData.message || "Signup failed");
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error as any).status = response.status;
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error as any).data = errorData;
     throw error;
   }
@@ -55,7 +57,9 @@ export async function loginUser(data: LoginData): Promise<LoginResponse> {
     const error = new Error(
       errorData.error || errorData.message || "Login failed",
     );
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error as any).status = response.status;
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     (error as any).data = errorData;
     throw error;
   }

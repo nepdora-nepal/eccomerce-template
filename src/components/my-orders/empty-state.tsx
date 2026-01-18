@@ -1,5 +1,5 @@
 import { ShoppingBag } from "lucide-react";
-import { OrderFilters } from "@/types/customer/my-orders";
+import { OrderFilters } from "@/types/my-orders";
 
 interface EmptyStateProps {
   filters: OrderFilters;

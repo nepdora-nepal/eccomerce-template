@@ -1,9 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { appointmentAPI } from "@/services/api/appointment";
-import {
-  AppointmentFilters,
-  AppointmentFormData,
-} from "@/types/appointment";
+import { AppointmentFilters, AppointmentFormData } from "@/types/appointment";
 import { toast } from "sonner";
 
 // Get appointments with filters
@@ -25,7 +22,7 @@ export const useGetAppointmentReasons = () => {
 };
 
 // Submit appointment form (for public-facing form)
-export const useSubmitAppointmentForm = (siteUser: string) => {
+export const useSubmitAppointmentForm = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

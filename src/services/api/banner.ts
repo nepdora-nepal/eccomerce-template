@@ -8,7 +8,6 @@ const API_BASE_URL = siteConfig.apiBaseUrl;
 
 const prepareFormData = (
   data: CreateBannerWithImagesRequest | UpdateBannerWithImagesRequest,
-  isUpdate: boolean = false
 ) => {
   const formData = new FormData();
 
@@ -32,7 +31,7 @@ const prepareFormData = (
 
       formData.append(
         `images[${index}]image_alt_description`,
-        image.image_alt_description || ""
+        image.image_alt_description || "",
       );
       formData.append(`images[${index}]link`, image.link || "");
       formData.append(`images[${index}]is_active`, image.is_active.toString());
@@ -51,7 +50,6 @@ const prepareFormData = (
 export const bannerApi = {
   // Get all banners with images
   getBanners: async (): Promise<Banner[]> => {
-
     const response = await fetch(`${API_BASE_URL}/api/banners/`);
     if (!response.ok) {
       throw new Error("Failed to fetch banners");
@@ -61,8 +59,6 @@ export const bannerApi = {
 
   // Get single banner with images
   getBanner: async (id: number): Promise<Banner> => {
-    
-
     const response = await fetch(`${API_BASE_URL}/api/banners/${id}/`);
     if (!response.ok) {
       throw new Error("Failed to fetch banner");
@@ -72,10 +68,8 @@ export const bannerApi = {
 
   // Create banner with images
   createBannerWithImages: async (
-    data: CreateBannerWithImagesRequest
+    data: CreateBannerWithImagesRequest,
   ): Promise<Banner> => {
-    
-
     const formData = prepareFormData(data, false);
 
     const response = await fetch(`${API_BASE_URL}/api/banners/`, {
@@ -101,10 +95,8 @@ export const bannerApi = {
   // Update banner with images
   updateBannerWithImages: async (
     id: number,
-    data: UpdateBannerWithImagesRequest
+    data: UpdateBannerWithImagesRequest,
   ): Promise<Banner> => {
-    
-
     const formData = prepareFormData(data, true);
 
     const response = await fetch(`${API_BASE_URL}/api/banners/${id}/`, {
@@ -129,8 +121,6 @@ export const bannerApi = {
 
   // Delete banner
   deleteBanner: async (id: number): Promise<void> => {
-    
-
     const response = await fetch(`${API_BASE_URL}/api/banners/${id}/`, {
       method: "DELETE",
     });

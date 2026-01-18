@@ -23,6 +23,7 @@ export const FeaturedProducts: React.FC = () => {
                     ))
                 ) : (
                     products.map((product) => (
+                        //eslint-disable-next-line @typescript-eslint/no-explicit-any
                         <ProductCard key={product.id} product={product as any} />
                     ))
                 )}

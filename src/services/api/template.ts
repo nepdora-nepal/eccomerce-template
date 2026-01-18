@@ -1,15 +1,13 @@
 import {
-  Template,
   PaginatedTemplates,
   TemplateFilters,
-  ImportTemplateRequest,
   ImportTemplateResponse,
 } from "@/types/template";
 import { siteConfig } from "@/config/site";
 
 export const templateAPI = {
   getTemplates: async (
-    filters: TemplateFilters = {}
+    filters: TemplateFilters = {},
   ): Promise<PaginatedTemplates> => {
     const BASE_API_URL = siteConfig.apiBaseUrl;
 
@@ -38,7 +36,7 @@ export const templateAPI = {
   },
 
   importTemplate: async (
-    templateId: number
+    templateId: number,
   ): Promise<ImportTemplateResponse> => {
     const BASE_API_URL = siteConfig.apiBaseUrl;
 
@@ -55,7 +53,7 @@ export const templateAPI = {
     if (!response.ok) {
       const errorData = await response.json().catch(() => ({}));
       throw new Error(
-        errorData.message || `Failed to import template: ${response.status}`
+        errorData.message || `Failed to import template: ${response.status}`,
       );
     }
 

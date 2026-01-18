@@ -25,6 +25,7 @@ export const LoginForm = () => {
     const onSubmit = async (data: LoginFormValues) => {
         try {
             await login(data);
+            //eslint-disable-next-line @typescript-eslint/no-explicit-any
         } catch (error: any) {
             console.error('Login error:', error);
             if (error.status === 400 && error.data?.error?.params?.field_errors) {

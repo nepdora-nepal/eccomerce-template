@@ -9,7 +9,6 @@ import { useSubmitContactForm } from "@/hooks/use-contact";
 import { ContactFormData } from "@/types/contact";
 import { motion, Variants } from "framer-motion";
 import { toast } from "sonner";
-import tenant from "../../../tenant.json";
 
 const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
@@ -21,7 +20,7 @@ const fadeInUp: Variants = {
 };
 
 export default function ContactUs() {
-    const { mutate: submitContact, isPending } = useSubmitContactForm(tenant.tenantName);
+    const { mutate: submitContact, isPending } = useSubmitContactForm();
     const [formKey, setFormKey] = useState(0);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

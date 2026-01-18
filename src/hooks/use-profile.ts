@@ -20,6 +20,7 @@ export const useUpdateProfile = () => {
       queryClient.invalidateQueries({ queryKey: ["profile"] });
       toast.success(response.message || "Profile updated successfully!");
     },
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       toast.error(error.message || "Failed to update profile");
     },

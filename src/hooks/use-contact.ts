@@ -6,7 +6,6 @@ import {
   ContactFilters,
   ContactFormSubmission,
 } from "@/types/contact";
-import { toast } from "sonner";
 
 export const useGetContacts = (filters: ContactFilters = {}) => {
   return useQuery<PaginatedContacts>({

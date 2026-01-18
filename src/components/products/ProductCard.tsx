@@ -44,7 +44,7 @@ export default function ProductCard({
     const removeFromWishlistMutation = useRemoveFromWishlist();
 
     const isPending = addToWishlistMutation.isPending || removeFromWishlistMutation.isPending;
-
+    //eslint-disable-next-line @typescript-eslint/no-explicit-any
     const isWishlisted = (product as any).is_wishlist || wishlistItems?.some(item => item.product.id === product.id);
 
     const handleWishlistToggle = (active: boolean) => {

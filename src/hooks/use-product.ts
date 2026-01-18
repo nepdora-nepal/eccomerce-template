@@ -4,11 +4,7 @@ import {
   ProductFilterParams,
 } from "@/services/api/product";
 import { toast } from "sonner";
-import {
-  CreateProductRequest,
-  UpdateProductRequest,
-  PaginationParams,
-} from "@/types/product";
+import { CreateProductRequest, UpdateProductRequest } from "@/types/product";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 
@@ -77,7 +73,7 @@ export const useProducts = (additionalParams: ProductFilterParams = {}) => {
       ...urlFilters,
       ...additionalParams,
     }),
-    [urlFilters, additionalParams]
+    [urlFilters, additionalParams],
   );
 
   return useQuery({
@@ -112,7 +108,7 @@ export const useCreateProduct = () => {
   return useMutation({
     mutationFn: (data: CreateProductRequest) =>
       useProductApi.createProduct(data),
-    onSuccess: response => {
+    onSuccess: (response) => {
       // Invalidate all product queries to refresh pagination
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success(response.message);
@@ -159,7 +155,7 @@ export const useDeleteProduct = () => {
 
   return useMutation({
     mutationFn: (slug: string) => useProductApi.deleteProduct(slug),
-    onSuccess: response => {
+    onSuccess: (response) => {
       // Invalidate all product queries to refresh pagination
       queryClient.invalidateQueries({ queryKey: ["products"] });
       toast.success(response.message);

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import { QueryProvider } from "@/components/providers/query-provider";
 import { CartProvider } from "@/contexts/CartContext";
 import { MainLayout } from "@/components/layout/MainLayout";

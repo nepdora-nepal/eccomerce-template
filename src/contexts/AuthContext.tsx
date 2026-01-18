@@ -250,6 +250,7 @@ export const AuthProvider = ({
 
       toast.success("Account created successfully! Please log in to continue.");
       router.push("/login");
+      //eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const errorMessage = getErrorMessage(error);
       // Only show toast if it's not a validation error

@@ -22,6 +22,7 @@ export const Newsletter: React.FC = () => {
                 onSuccess: () => {
                     setEmail("");
                 },
+                //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 onError: (error: any) => {
                     toast.error(
                         error?.message || "Failed to subscribe"

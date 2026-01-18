@@ -149,6 +149,7 @@ const WishlistPage = () => {
             return (
               <ProductCard
                 key={item.product.id}
+                //eslint-disable-next-line @typescript-eslint/no-explicit-any
                 product={productWithWishlistStatus as any}
               />
             );
