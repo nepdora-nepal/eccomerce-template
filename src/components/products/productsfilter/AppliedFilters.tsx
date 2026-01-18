@@ -1,6 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 interface CategoryLike {
     slug: string;
@@ -95,12 +96,13 @@ const AppliedFilters: React.FC<AppliedFiltersProps> = ({
             <div className="flex justify-between items-center mb-2">
                 <h3 className="font-semibold text-foreground text-sm">Applied Filters</h3>
                 {appliedFilters.length > 1 && (
-                    <button
+                    <Button
+                        variant="link"
                         onClick={handleClearAll}
-                        className="text-xs font-medium text-primary hover:underline"
+                        className="text-xs font-medium text-primary hover:no-underline p-0 h-auto"
                     >
                         Clear All
-                    </button>
+                    </Button>
                 )}
             </div>
             <div className="flex flex-wrap gap-2">
@@ -112,13 +114,15 @@ const AppliedFilters: React.FC<AppliedFiltersProps> = ({
                                 className="flex items-center gap-1.5 pl-2 py-1 bg-card text-muted-foreground border border-border rounded-full text-xs"
                             >
                                 <span className="font-medium">{filter.value}</span>
-                                <button
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
                                     onClick={filter.onClear}
-                                    className="p-0.5 hover:text-destructive transition-colors"
+                                    className="p-0.5 hover:text-destructive transition-colors h-6 w-6 rounded-full hover:bg-transparent"
                                     aria-label={`Remove ${filter.label} filter`}
                                 >
                                     <X className="w-4 h-4" />
-                                </button>
+                                </Button>
                             </div>
                         )
                 )}

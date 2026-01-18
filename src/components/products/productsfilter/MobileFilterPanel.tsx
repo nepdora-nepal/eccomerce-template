@@ -1,6 +1,7 @@
 "use client";
 
 import { Search, X, RotateCcw, Loader2, ChevronDown, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { Category, SubCategory } from "@/types/product";
 
@@ -88,9 +89,9 @@ export default function MobileFilterPanel({
             <div className="absolute right-0 top-0 h-full w-80 bg-card shadow-2xl flex flex-col">
                 <div className="flex items-center justify-between p-4 border-b border-border/50">
                     <h2 className="text-lg font-semibold text-foreground">Filters</h2>
-                    <button onClick={onClose} className="p-2 hover:bg-secondary rounded-full transition-colors">
+                    <Button variant="ghost" size="icon" onClick={onClose} className="hover:bg-secondary rounded-full">
                         <X className="w-5 h-5 text-muted-foreground" />
-                    </button>
+                    </Button>
                 </div>
 
                 <div className="flex-1 p-4 overflow-y-auto space-y-6">
@@ -98,9 +99,13 @@ export default function MobileFilterPanel({
                         <div className="flex items-center justify-between mb-2">
                             <h3 className="text-sm font-bold text-foreground uppercase tracking-wider">Search</h3>
                             {searchQuery && (
-                                <button onClick={handleClearSearch} className="flex items-center gap-1 text-xs text-primary font-medium hover:underline">
+                                <Button
+                                    variant="link"
+                                    onClick={handleClearSearch}
+                                    className="flex items-center gap-1 text-xs text-primary font-medium hover:no-underline p-0 h-auto"
+                                >
                                     <X className="w-3 h-3" /> Clear
-                                </button>
+                                </Button>
                             )}
                         </div>
                         <div className="relative">
@@ -134,31 +139,34 @@ export default function MobileFilterPanel({
                     <div>
                         <h3 className="mb-2 text-sm font-bold text-foreground uppercase tracking-wider">Categories</h3>
                         <div className="space-y-2">
-                            <button
+                            <Button
+                                variant="ghost"
                                 onClick={() => handleCategoryClick("all")}
-                                className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all ${selectedCategory === "all" ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "bg-secondary/50 text-muted-foreground hover:bg-secondary"}`}
+                                className={`w-full justify-start px-4 py-2.5 rounded-xl text-sm font-medium transition-all h-auto ${selectedCategory === "all" ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90 hover:text-primary-foreground" : "bg-secondary/50 text-muted-foreground hover:bg-secondary"}`}
                             >
                                 All Categories
-                            </button>
+                            </Button>
                             {categories.map((category) => (
                                 <div key={category.slug}>
-                                    <button
+                                    <Button
+                                        variant="ghost"
                                         onClick={() => handleCategoryClick(category.slug)}
-                                        className={`w-full text-left px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center justify-between ${selectedCategory === category.slug ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20" : "bg-secondary/50 text-muted-foreground hover:bg-secondary"}`}
+                                        className={`w-full justify-between px-4 py-2.5 rounded-xl text-sm font-medium transition-all flex items-center h-auto ${selectedCategory === category.slug ? "bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:bg-primary/90 hover:text-primary-foreground" : "bg-secondary/50 text-muted-foreground hover:bg-secondary"}`}
                                     >
                                         <span>{category.name}</span>
                                         {selectedCategory === category.slug && subcategories.length > 0 && (expandedCategories.has(category.slug) ? <ChevronDown className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />)}
-                                    </button>
+                                    </Button>
                                     {selectedCategory === category.slug && expandedCategories.has(category.slug) && subcategories.length > 0 && (
                                         <div className="mt-2 ml-4 space-y-1 border-l-2 border-primary/20 pl-4 py-1">
                                             {subcategories.map((subcategory) => (
-                                                <button
+                                                <Button
+                                                    variant="ghost"
                                                     key={subcategory.slug}
                                                     onClick={() => setSelectedSubcategory(subcategory.slug)}
-                                                    className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-all ${selectedSubcategory === subcategory.slug ? "bg-primary/10 text-primary font-bold" : "text-muted-foreground hover:bg-secondary"}`}
+                                                    className={`w-full justify-start px-3 py-2 rounded-lg text-sm transition-all h-auto ${selectedSubcategory === subcategory.slug ? "bg-primary/10 text-primary font-bold hover:bg-primary/20 hover:text-primary" : "text-muted-foreground hover:bg-secondary"}`}
                                                 >
                                                     {subcategory.name}
-                                                </button>
+                                                </Button>
                                             ))}
                                         </div>
                                     )}
@@ -185,9 +193,13 @@ export default function MobileFilterPanel({
                 </div>
 
                 <div className="p-4 border-t border-border/50 bg-secondary/30">
-                    <button onClick={handleClearAll} className="flex items-center justify-center w-full gap-2 px-4 py-3 text-sm font-bold text-muted-foreground transition-all bg-card border border-border rounded-xl hover:bg-secondary active:scale-[0.98]">
+                    <Button
+                        variant="outline"
+                        onClick={handleClearAll}
+                        className="flex items-center justify-center w-full gap-2 px-4 py-6 text-sm font-bold text-muted-foreground transition-all bg-card border border-border rounded-xl hover:bg-secondary active:scale-[0.98] h-auto"
+                    >
                         <RotateCcw className="w-4 h-4" /> Reset All Filters
-                    </button>
+                    </Button>
                     {isFiltering && (
                         <div className="flex items-center justify-center gap-2 text-[10px] text-primary font-bold uppercase tracking-widest pt-3">
                             <Loader2 className="w-3 h-3 animate-spin" /> Refreshing Results

@@ -117,9 +117,13 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                                     isLoading={isWishlistPending}
                                     onToggle={handleWishlistToggle}
                                 />
-                                <button className="p-2 rounded-full border border-border text-muted-foreground hover:text-primary hover:bg-secondary hover:border-primary/20 transition-all">
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    className="rounded-full border border-border text-muted-foreground hover:text-primary hover:bg-secondary hover:border-primary/20 transition-all h-10 w-10"
+                                >
                                     <Share2 size={20} />
-                                </button>
+                                </Button>
                             </div>
                         </div>
                         <h1 className="text-4xl font-extrabold text-foreground mb-4">{product.name}</h1>
@@ -144,9 +148,23 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                     <div className="pt-6 border-t border-border space-y-6">
                         <div className="flex items-center gap-6">
                             <div className="flex items-center border border-border rounded-xl bg-secondary p-1">
-                                <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 flex items-center justify-center hover:bg-background hover:shadow-sm rounded-lg transition-all text-muted-foreground"><Minus size={18} /></button>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                                    className="w-10 h-10 flex items-center justify-center hover:bg-background hover:shadow-sm rounded-lg transition-all text-muted-foreground"
+                                >
+                                    <Minus size={18} />
+                                </Button>
                                 <span className="w-12 text-center font-bold text-foreground text-lg">{quantity}</span>
-                                <button onClick={() => setQuantity(quantity + 1)} className="w-10 h-10 flex items-center justify-center hover:bg-background hover:shadow-sm rounded-lg transition-all text-muted-foreground"><Plus size={18} /></button>
+                                <Button
+                                    variant="ghost"
+                                    size="icon"
+                                    onClick={() => setQuantity(quantity + 1)}
+                                    className="w-10 h-10 flex items-center justify-center hover:bg-background hover:shadow-sm rounded-lg transition-all text-muted-foreground"
+                                >
+                                    <Plus size={18} />
+                                </Button>
                             </div>
                             <Button
                                 size="lg"

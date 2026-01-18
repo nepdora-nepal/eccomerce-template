@@ -12,6 +12,7 @@ import StarRating from "./StarRating";
 import { useState, useRef } from "react";
 import { useAddToWishlist, useRemoveFromWishlist, useWishlist } from "@/hooks/use-wishlist";
 import { useAuth } from "@/hooks/use-auth";
+import { Button } from "../ui/button";
 import { toast } from "sonner";
 
 interface ProductCardProps {
@@ -158,38 +159,44 @@ export default function ProductCard({
                                 {!isMobile && (
                                     <>
                                         {!isInCart ? (
-                                            <button
+                                            <Button
+                                                variant="ghost"
+                                                size="icon"
                                                 ref={addToCartButtonRef}
                                                 onClick={handleAddToCartClick}
                                                 disabled={product.stock <= 0}
                                                 data-cart-action="add-to-cart"
-                                                className={`flex items-center justify-center w-10 h-10 rounded-full bg-card text-primary border border-primary/20 hover:bg-primary hover:text-primary-foreground transition-all duration-300 transform hover:scale-110 disabled:opacity-50 disabled:cursor-not-allowed ${isAddedToCart ? "bg-green-500 text-white border-green-500" : ""
+                                                className={`w-10 h-10 rounded-full border border-primary/20 hover:bg-primary hover:text-primary-foreground transform hover:scale-110 ${isAddedToCart ? "bg-green-500 text-white border-green-500 hover:bg-green-600 hover:text-white" : "bg-card text-primary"
                                                     }`}
                                             >
                                                 <ShoppingCart size={18} />
-                                            </button>
+                                            </Button>
                                         ) : (
                                             <div className="flex items-center gap-1 bg-secondary border border-border/50 rounded-full p-1 shadow-inner">
-                                                <button
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
                                                     ref={minusButtonRef}
                                                     onClick={handleQuantityDecrease}
                                                     data-cart-action="decrease-quantity"
-                                                    className="flex items-center justify-center w-8 h-8 rounded-full bg-card text-primary hover:bg-destructive/10 hover:text-destructive transition-all duration-200 shadow-sm"
+                                                    className="w-8 h-8 rounded-full bg-card text-primary hover:bg-destructive/10 hover:text-destructive shadow-sm"
                                                 >
                                                     <Minus size={12} />
-                                                </button>
+                                                </Button>
                                                 <span className="px-2 text-xs font-black text-foreground min-w-[20px] text-center">
                                                     {cartQuantity}
                                                 </span>
-                                                <button
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
                                                     ref={plusButtonRef}
                                                     onClick={handleQuantityIncrease}
                                                     disabled={product.stock <= cartQuantity}
                                                     data-cart-action="increase-quantity"
-                                                    className="flex items-center justify-center w-8 h-8 rounded-full bg-card text-primary hover:bg-primary hover:text-primary-foreground transition-all duration-200 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                                    className="w-8 h-8 rounded-full bg-card text-primary hover:bg-primary hover:text-primary-foreground shadow-sm"
                                                 >
                                                     <Plus size={12} />
-                                                </button>
+                                                </Button>
                                             </div>
                                         )}
                                     </>
@@ -211,14 +218,15 @@ export default function ProductCard({
             {isMobile && (
                 <div className="px-4 pb-4">
                     {!isInCart ? (
-                        <button
+                        <Button
+                            variant="default"
                             ref={mobileAddToCartButtonRef}
                             onClick={handleAddToCartClick}
                             disabled={product.stock <= 0}
                             data-cart-action="add-to-cart"
-                            className={`flex items-center justify-center w-full gap-2 px-4 py-3 text-xs font-black uppercase tracking-widest text-primary-foreground rounded-2xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed shadow-xl ${isAddedToCart
-                                ? "bg-green-500 scale-105"
-                                : "bg-primary hover:bg-primary/90 shadow-primary/20"
+                            className={`flex items-center justify-center w-full gap-2 px-4 py-8 text-xs font-black uppercase tracking-widest rounded-2xl transition-all duration-300 shadow-xl border-none ${isAddedToCart
+                                ? "bg-green-500 hover:bg-green-600 scale-105 text-white"
+                                : "bg-primary hover:bg-primary/90 text-primary-foreground shadow-primary/20"
                                 }`}
                         >
                             <ShoppingCart size={14} />
@@ -227,30 +235,34 @@ export default function ProductCard({
                                 : product.stock > 0
                                     ? "Add to Cart"
                                     : "Out of Stock"}
-                        </button>
+                        </Button>
                     ) : (
                         <div className="flex items-center justify-between gap-2 px-4 py-2 bg-secondary border border-border/50 rounded-2xl shadow-inner">
-                            <button
+                            <Button
+                                variant="ghost"
+                                size="icon"
                                 onClick={handleQuantityDecrease}
                                 data-cart-action="decrease-quantity"
-                                className="flex items-center justify-center w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:bg-destructive/10 hover:text-destructive transition-all duration-200"
+                                className="w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:bg-destructive/10 hover:text-destructive"
                             >
                                 <Minus size={16} />
-                            </button>
+                            </Button>
                             <div className="flex flex-col items-center">
                                 <span className="text-sm font-black text-foreground">
                                     {cartQuantity}
                                 </span>
                                 <span className="text-[10px] text-muted-foreground font-bold uppercase tracking-tighter">in cart</span>
                             </div>
-                            <button
+                            <Button
+                                variant="ghost"
+                                size="icon"
                                 onClick={handleQuantityIncrease}
                                 disabled={product.stock <= cartQuantity}
                                 data-cart-action="increase-quantity"
-                                className="flex items-center justify-center w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:bg-primary hover:text-primary-foreground transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                                className="w-10 h-10 rounded-full bg-card text-primary shadow-sm hover:bg-primary hover:text-primary-foreground"
                             >
                                 <Plus size={16} />
-                            </button>
+                            </Button>
                         </div>
                     )}
                 </div>

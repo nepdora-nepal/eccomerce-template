@@ -1,5 +1,6 @@
 import { ShoppingBag } from "lucide-react";
 import { OrderFilters } from "@/types/my-orders";
+import { Button } from "../ui/button";
 
 interface EmptyStateProps {
   filters: OrderFilters;
@@ -22,12 +23,13 @@ const EmptyState: React.FC<EmptyStateProps> = ({ filters }) => {
             : `No ${filters.status} orders found. Try selecting a different status filter.`}
       </p>
       {(filters.search || filters.status !== "all") && (
-        <button
+        <Button
+          variant="link"
           onClick={() => window.location.reload()}
-          className="text-primary hover:text-primary/80 mt-4 px-4 py-2 text-sm underline"
+          className="text-primary hover:no-underline mt-4 px-4 py-2 text-sm"
         >
           Clear all filters
-        </button>
+        </Button>
       )}
     </div>
   );

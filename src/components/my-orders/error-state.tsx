@@ -1,4 +1,5 @@
 import { AlertCircle, RefreshCw } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface ErrorStateProps {
   error: string;
@@ -15,13 +16,14 @@ const ErrorState: React.FC<ErrorStateProps> = ({ error, onRetry }) => {
         Something went wrong
       </h3>
       <p className="mb-6 text-red-700">{error}</p>
-      <button
+      <Button
+        variant="destructive"
         onClick={onRetry}
-        className="inline-flex items-center gap-2 rounded-lg bg-red-600 px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-red-700"
+        className="inline-flex items-center gap-2 rounded-lg px-6 py-6 text-sm font-medium transition-colors h-auto"
       >
         <RefreshCw className="h-4 w-4" />
         Try Again
-      </button>
+      </Button>
     </div>
   );
 };

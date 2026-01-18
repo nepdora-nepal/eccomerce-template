@@ -1,4 +1,5 @@
 import { Search, ChevronDown } from "lucide-react";
+import { Button } from "../ui/button";
 import { useState } from "react";
 import {
   OrderFilters as OrderFiltersType,
@@ -107,13 +108,13 @@ const OrderFilters: React.FC<OrderFiltersProps> = ({
 
         {/* Mobile Dropdown (screens < 640px) */}
         <div className="relative sm:hidden">
-          <button
+          <Button
+            variant="ghost"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className={`flex w-full items-center justify-between rounded-lg border px-3 py-2.5 text-sm font-medium transition-all duration-200 ${
-              currentStatus
+            className={`flex w-full items-center justify-between rounded-lg border px-3 py-6 text-sm font-medium transition-all duration-200 h-auto hover:bg-transparent ${currentStatus
                 ? currentStatus.color + " shadow-sm"
                 : "border-gray-200 bg-gray-50 text-gray-700"
-            }`}
+              }`}
           >
             <div className="flex items-center">
               <span>{currentStatus?.label || "All Orders"}</span>
@@ -122,9 +123,8 @@ const OrderFilters: React.FC<OrderFiltersProps> = ({
                 return (
                   count !== undefined && (
                     <span
-                      className={`ml-2 rounded-full px-2 py-0.5 text-xs ${
-                        currentStatus ? "bg-opacity-70 bg-white" : "bg-gray-200"
-                      }`}
+                      className={`ml-2 rounded-full px-2 py-0.5 text-xs ${currentStatus ? "bg-opacity-70 bg-white" : "bg-gray-200"
+                        }`}
                     >
                       {count}
                     </span>
@@ -133,37 +133,35 @@ const OrderFilters: React.FC<OrderFiltersProps> = ({
               })()}
             </div>
             <ChevronDown
-              className={`h-4 w-4 transition-transform duration-200 ${
-                isDropdownOpen ? "rotate-180" : ""
-              }`}
+              className={`h-4 w-4 transition-transform duration-200 ${isDropdownOpen ? "rotate-180" : ""
+                }`}
             />
-          </button>
+          </Button>
 
           {isDropdownOpen && (
             <div className="absolute z-10 mt-1 w-full rounded-lg border border-gray-200 bg-white shadow-lg">
               {statusOptions.map((status: StatusOption) => (
-                <button
+                <Button
+                  variant="ghost"
                   key={status.key}
                   onClick={() => handleStatusSelect(status.key)}
-                  className={`w-full px-3 py-2.5 text-left text-sm font-medium transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-gray-50 ${
-                    filters.status === status.key
+                  className={`w-full px-3 py-6 text-left text-sm font-medium transition-colors first:rounded-t-lg last:rounded-b-lg hover:bg-gray-50 h-auto justify-start ${filters.status === status.key
                       ? "text-primary bg-gray-50"
-                      : "text-gray-700"
-                  }`}
+                      : "text-gray-700 hover:text-gray-700"
+                    }`}
                 >
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between w-full">
                     <span>{status.label}</span>
                     <span
-                      className={`rounded-full px-2 py-0.5 text-xs ${
-                        filters.status === status.key
+                      className={`rounded-full px-2 py-0.5 text-xs ${filters.status === status.key
                           ? "bg-gray-100"
                           : "bg-gray-200"
-                      }`}
+                        }`}
                     >
                       {statusCounts[status.key]}
                     </span>
                   </div>
-                </button>
+                </Button>
               ))}
             </div>
           )}
@@ -172,26 +170,25 @@ const OrderFilters: React.FC<OrderFiltersProps> = ({
         {/* Desktop Button Layout (screens >= 640px) */}
         <div className="hidden flex-wrap gap-2 sm:flex md:gap-3">
           {statusOptions.map((status: StatusOption) => (
-            <button
+            <Button
+              variant="ghost"
               key={status.key}
               onClick={() => onStatusFilter(status.key)}
-              className={`rounded-lg border px-3 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 md:px-4 md:py-2.5 ${
-                filters.status === status.key
-                  ? status.color + " shadow-sm"
-                  : "border-gray-200 bg-gray-50 text-gray-700 hover:border-gray-300 hover:bg-gray-100"
-              }`}
+              className={`rounded-lg border px-3 py-2 text-sm font-medium whitespace-nowrap transition-all duration-200 md:px-4 md:py-6 h-auto ${filters.status === status.key
+                  ? status.color + " shadow-sm hover:" + status.color
+                  : "border-gray-200 bg-gray-50 text-gray-700 hover:border-gray-300 hover:bg-gray-100 hover:text-gray-700"
+                }`}
             >
               {status.label}
               <span
-                className={`ml-1 rounded-full px-1.5 py-0.5 text-xs md:ml-2 md:px-2 ${
-                  filters.status === status.key
+                className={`ml-1 rounded-full px-1.5 py-0.5 text-xs md:ml-2 md:px-2 ${filters.status === status.key
                     ? "bg-opacity-70 bg-white"
                     : "bg-gray-200"
-                }`}
+                  }`}
               >
                 {statusCounts[status.key]}
               </span>
-            </button>
+            </Button>
           ))}
         </div>
       </div>

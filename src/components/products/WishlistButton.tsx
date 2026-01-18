@@ -1,6 +1,7 @@
 "use client";
 
 import { Heart, Loader2 } from "lucide-react";
+import { Button } from "../ui/button";
 
 interface WishlistButtonProps {
     size?: "sm" | "md" | "lg";
@@ -34,12 +35,14 @@ export default function WishlistButton({
     };
 
     return (
-        <button
+        <Button
+            variant="ghost"
+            size="icon"
             onClick={handleToggle}
             disabled={isLoading}
-            className={`${sizeClasses[size]} rounded-full transition-all duration-300 transform hover:scale-110 disabled:opacity-70 disabled:scale-100 ${isActive
-                ? "bg-destructive/10 text-destructive"
-                : "bg-card/80 backdrop-blur-sm text-muted-foreground hover:text-destructive shadow-sm"
+            className={`${sizeClasses[size]} rounded-full transition-all duration-300 transform hover:scale-110 disabled:opacity-70 disabled:scale-100 h-auto w-auto ${isActive
+                ? "bg-destructive/10 text-destructive hover:bg-destructive/20 hover:text-destructive"
+                : "bg-card/80 backdrop-blur-sm text-muted-foreground hover:text-destructive hover:bg-card/90 shadow-sm"
                 }`}
         >
             {isLoading ? (
@@ -53,6 +56,6 @@ export default function WishlistButton({
                     className={isActive ? "fill-current" : ""}
                 />
             )}
-        </button>
+        </Button>
     );
 }

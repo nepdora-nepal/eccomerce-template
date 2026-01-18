@@ -23,9 +23,14 @@ export const CartDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                             <ShoppingBag size={22} className="text-primary" />
                             Shopping Cart
                         </h2>
-                        <button onClick={onClose} className="p-2 hover:bg-secondary rounded-full transition-colors">
+                        <Button
+                            variant="ghost"
+                            size="icon"
+                            onClick={onClose}
+                            className="rounded-full hover:bg-secondary"
+                        >
                             <X size={24} />
-                        </button>
+                        </Button>
                     </div>
 
                     {/* Cart Items */}
@@ -34,12 +39,13 @@ export const CartDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                             <div className="h-full flex flex-col items-center justify-center text-center opacity-60">
                                 <ShoppingBag size={64} className="mb-4 text-muted-foreground/30" />
                                 <p className="text-lg font-medium text-muted-foreground">Your cart is empty</p>
-                                <button
+                                <Button
+                                    variant="link"
                                     onClick={() => { onClose(); router.push('/collections'); }}
-                                    className="mt-4 text-primary font-semibold hover:underline"
+                                    className="mt-4 text-primary font-semibold hover:no-underline p-0 h-auto"
                                 >
                                     Start Shopping →
-                                </button>
+                                </Button>
                             </div>
                         ) : (
                             <div className="space-y-6">
@@ -58,29 +64,35 @@ export const CartDrawer: React.FC<{ isOpen: boolean; onClose: () => void }> = ({
                                             <p className="text-sm text-muted-foreground mb-2">{item.product.category?.name || 'General'}</p>
                                             <div className="flex items-center justify-between">
                                                 <div className="flex items-center border border-border rounded-md">
-                                                    <button
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
                                                         onClick={() => updateQuantity(item.product.id, item.quantity - 1, item.selectedVariant?.id)}
-                                                        className="p-1 hover:bg-secondary"
+                                                        className="h-7 w-7 hover:bg-secondary"
                                                     >
                                                         <Minus size={14} />
-                                                    </button>
+                                                    </Button>
                                                     <span className="px-3 text-sm font-medium">{item.quantity}</span>
-                                                    <button
+                                                    <Button
+                                                        variant="ghost"
+                                                        size="icon"
                                                         onClick={() => updateQuantity(item.product.id, item.quantity + 1, item.selectedVariant?.id)}
-                                                        className="p-1 hover:bg-secondary"
+                                                        className="h-7 w-7 hover:bg-secondary"
                                                     >
                                                         <Plus size={14} />
-                                                    </button>
+                                                    </Button>
                                                 </div>
                                                 <span className="font-bold text-foreground">RS.{(item.selectedVariant ? parseFloat(item.selectedVariant.price) : parseFloat(item.product.price)) * item.quantity}</span>
                                             </div>
                                         </div>
-                                        <button
+                                        <Button
+                                            variant="ghost"
+                                            size="icon"
                                             onClick={() => removeFromCart(item.product.id, item.selectedVariant?.id)}
-                                            className="p-2 text-muted-foreground hover:text-destructive transition-colors"
+                                            className="text-muted-foreground hover:text-destructive hover:bg-transparent"
                                         >
                                             <Trash2 size={18} />
-                                        </button>
+                                        </Button>
                                     </div>
                                 ))}
                             </div>

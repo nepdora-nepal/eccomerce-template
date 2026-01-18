@@ -50,9 +50,9 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
 
                     {/* Actions */}
                     <div className="flex items-center gap-2 sm:gap-4">
-                        <button className="p-2 text-muted-foreground hover:text-primary transition-colors hidden sm:block">
+                        <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-primary hidden sm:inline-flex">
                             <Search size={22} />
-                        </button>
+                        </Button>
 
                         <Link href="/wishlist" className="p-2 text-muted-foreground hover:text-primary transition-colors relative">
                             <Heart size={22} />
@@ -63,19 +63,20 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
                             )}
                         </Link>
 
-                        <button onClick={onCartOpen} className="p-2 text-muted-foreground hover:text-primary transition-colors relative">
+                        <Button variant="ghost" size="icon" onClick={onCartOpen} className="text-muted-foreground hover:text-primary relative">
                             <ShoppingCart size={22} />
                             {itemCount > 0 && (
                                 <span className="absolute -top-1 -right-1 bg-primary text-primary-foreground text-[10px] font-bold w-5 h-5 flex items-center justify-center rounded-full border-2 border-background">
                                     {itemCount}
                                 </span>
                             )}
-                        </button>
+                        </Button>
 
                         <div className="relative">
-                            <button
+                            <Button
+                                variant="ghost"
                                 onClick={() => setIsProfileOpen(!isProfileOpen)}
-                                className="p-1 sm:p-2 flex items-center gap-1 text-muted-foreground hover:text-primary transition-colors"
+                                className="h-auto p-1 sm:p-2 flex items-center gap-1 text-muted-foreground hover:text-primary hover:bg-transparent"
                             >
                                 <div className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center overflow-hidden border border-border">
                                     {user ? (
@@ -87,7 +88,7 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
                                     )}
                                 </div>
                                 <ChevronDown size={14} className={cn("transition-transform", isProfileOpen && "rotate-180")} />
-                            </button>
+                            </Button>
 
                             {isProfileOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-card border border-border rounded-xl shadow-xl py-2 z-50">
@@ -112,24 +113,27 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
                                                 <Search size={16} /> My Orders
                                             </Link>
                                             <hr className="my-1 border-border/50" />
-                                            <button
+                                            <Button
+                                                variant="ghost"
                                                 onClick={() => { logout(); setIsProfileOpen(false); }}
-                                                className="w-full flex items-center gap-3 px-4 py-2 text-sm text-destructive hover:bg-destructive/5"
+                                                className="w-full justify-start gap-3 px-4 py-2 text-sm text-destructive hover:bg-destructive/5 hover:text-destructive h-auto font-normal"
                                             >
                                                 <LogOut size={16} /> Logout
-                                            </button>
+                                            </Button>
                                         </>
                                     )}
                                 </div>
                             )}
                         </div>
 
-                        <button
+                        <Button
+                            variant="ghost"
+                            size="icon"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="lg:hidden p-2 text-muted-foreground hover:text-primary transition-colors"
+                            className="lg:hidden text-muted-foreground hover:text-primary"
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                        </button>
+                        </Button>
                     </div>
                 </div>
             </div>

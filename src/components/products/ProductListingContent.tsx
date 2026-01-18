@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Filter } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import { useProductsFilter } from "@/hooks/useProductsFilter";
 import ProductsFilterSidebar from "@/components/products/productsfilter/ProductsFilterSidebar";
 import MobileFilterPanel from "@/components/products/productsfilter/MobileFilterPanel";
@@ -79,13 +80,13 @@ export default function ProductListingContent() {
                     <main className="flex-1">
                         <div className="flex items-center justify-between mb-8 lg:hidden">
                             <h2 className="text-2xl font-black text-foreground uppercase tracking-tighter">Collections</h2>
-                            <button
+                            <Button
                                 onClick={() => setIsFilterOpen(true)}
-                                className="flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-2xl font-bold text-sm shadow-xl shadow-primary/10 active:scale-95 transition-all"
+                                className="flex items-center gap-2 px-6 py-6 bg-primary text-primary-foreground rounded-2xl font-bold text-sm shadow-xl shadow-primary/10 active:scale-95 transition-all border-none h-auto"
                             >
                                 <Filter className="w-4 h-4" />
                                 Refine
-                            </button>
+                            </Button>
                         </div>
 
                         <div className="hidden lg:block mb-12">
