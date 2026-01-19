@@ -27,7 +27,7 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
         { name: 'Home', href: '/' },
         { name: 'Shop', href: '/collections' },
         { name: 'About', href: '/about' },
-        { name: 'Blog', href: '/news' },
+        { name: 'Blog', href: '/blogs' },
         { name: 'Contact', href: '/contact' },
     ];
 

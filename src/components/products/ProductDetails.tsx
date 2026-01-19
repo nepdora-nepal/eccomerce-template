@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Share2, Shield, Truck, Plus, Minus, ArrowLeft, Star } from 'lucide-react';
+import { sanitizeProductDescription } from '@/utils/html-sanitizer';
 import { Product } from '@/types/product';
 import { useCart } from '@/hooks/use-cart';
 import { useProductReviews } from '@/hooks/use-reviews';
@@ -143,7 +144,7 @@ const ProductDetails = ({ product }: ProductDetailsProps) => {
                         </div>
                     </div>
 
-                    <div className="text-muted-foreground leading-relaxed text-lg" dangerouslySetInnerHTML={{ __html: product.description || '' }} />
+                    <div className="text-muted-foreground leading-relaxed text-lg" dangerouslySetInnerHTML={{ __html: sanitizeProductDescription(product.description || '') }} />
 
                     <div className="pt-6 border-t border-border space-y-6">
                         <div className="flex items-center gap-6">
