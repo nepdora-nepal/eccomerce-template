@@ -5,7 +5,6 @@ import { Header } from './Header';
 import { Footer } from './Footer';
 import { CartDrawer } from './CartDrawer';
 import { AuthProvider } from '@/contexts/AuthContext';
-
 export const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [isCartOpen, setIsCartOpen] = useState(false);
 

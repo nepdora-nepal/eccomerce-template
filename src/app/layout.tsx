@@ -5,6 +5,7 @@ import { QueryProvider } from "@/components/providers/query-provider";
 import { CartProvider } from "@/contexts/CartContext";
 import { MainLayout } from "@/components/layout/MainLayout";
 import { Toaster } from "sonner";
+import NextTopLoader from 'nextjs-toploader';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -22,6 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
+import { WhatsApp } from "@/components/common/whatsapp/WhatsApp";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -32,10 +35,12 @@ export default function RootLayout({
       <body className={inter.className}>
         <QueryProvider>
           <CartProvider>
+            <NextTopLoader color="#6f57cfp" />
             <MainLayout>
               {children}
             </MainLayout>
           </CartProvider>
+          <WhatsApp />
         </QueryProvider>
         <Toaster position="bottom-right" richColors />
       </body>
