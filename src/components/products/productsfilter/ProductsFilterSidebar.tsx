@@ -28,7 +28,7 @@ interface ProductsFilterSidebarProps {
 }
 
 const MIN_PRICE = 0;
-const MAX_PRICE = 100000;
+const MAX_PRICE = 300000;
 
 export default function ProductsFilterSidebar({
     selectedCategory,
@@ -41,15 +41,15 @@ export default function ProductsFilterSidebar({
     handleClearAll,
     isFiltering = false,
 }: ProductsFilterSidebarProps) {
-    const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+    const [hoveredCategory, setHoveredCategory] = useState<Category | null>(null);
     const leaveTimeout = useRef<NodeJS.Timeout | null>(null);
 
     const { data: subcategoriesData, isLoading: isLoadingSubcategories } =
-        useSubCategories(hoveredCategory ? { category: hoveredCategory } : undefined);
+        useSubCategories(hoveredCategory?.id ? { category: hoveredCategory.id } : undefined);
 
-    const handleMouseEnter = (categorySlug: string) => {
+    const handleMouseEnter = (category: Category) => {
         if (leaveTimeout.current) clearTimeout(leaveTimeout.current);
-        setHoveredCategory(categorySlug);
+        setHoveredCategory(category);
     };
 
     const handleMouseLeave = () => {
@@ -65,7 +65,7 @@ export default function ProductsFilterSidebar({
     };
 
     const handleSelectSubcategory = (subcategorySlug: string) => {
-        if (hoveredCategory) setSelectedCategory(hoveredCategory);
+        if (hoveredCategory) setSelectedCategory(hoveredCategory.slug);
         setSelectedSubcategory(subcategorySlug);
         setHoveredCategory(null);
     };
@@ -102,7 +102,7 @@ export default function ProductsFilterSidebar({
                         <div
                             key={category.slug}
                             className="relative"
-                            onMouseEnter={() => handleMouseEnter(category.slug)}
+                            onMouseEnter={() => handleMouseEnter(category)}
                         >
                             <Button
                                 variant="ghost"
@@ -113,12 +113,12 @@ export default function ProductsFilterSidebar({
                                     }`}
                             >
                                 <span>{category.name}</span>
-                                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${hoveredCategory === category.slug ? 'translate-x-0.5' : ''}`} />
+                                <ChevronRight className={`w-3.5 h-3.5 transition-transform ${hoveredCategory?.slug === category.slug ? 'translate-x-0.5' : ''}`} />
                             </Button>
-                            {hoveredCategory === category.slug && (
+                            {hoveredCategory?.slug === category.slug && (
                                 <div
                                     className="absolute left-[calc(100%+0.5rem)] top-0 w-64 z-[50] bg-card rounded-2xl shadow-2xl border border-border/50 p-2"
-                                    onMouseEnter={() => handleMouseEnter(category.slug)}
+                                    onMouseEnter={() => handleMouseEnter(category)}
                                 >
                                     {isLoadingSubcategories ? (
                                         renderSkeleton()

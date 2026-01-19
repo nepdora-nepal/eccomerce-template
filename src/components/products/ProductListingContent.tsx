@@ -12,7 +12,7 @@ import CategoryDescription from "@/components/products/CategoryDescription";
 import AppliedFilters from "@/components/products/productsfilter/AppliedFilters";
 
 const MIN_PRICE = 0;
-const MAX_PRICE = 100000;
+const MAX_PRICE = 300000;
 
 export default function ProductListingContent() {
     const [isFilterOpen, setIsFilterOpen] = useState(false);

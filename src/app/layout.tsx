@@ -17,7 +17,7 @@ export async function generateMetadata(): Promise<Metadata> {
     title: config?.business_name || "SastoBazaar - Premium Shopping Experience",
     description: config?.business_description || "Your ultimate solution for managing sales and customer relationships with cutting-edge technology.",
     icons: {
-      icon: config?.favicon || "/favicon.ico",
+      icon: config?.favicon || "",
     },
   };
 }

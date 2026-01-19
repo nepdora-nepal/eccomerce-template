@@ -90,7 +90,7 @@ const BlogDetailsContent = () => {
                     />
                 </div>
 
-                <div className="prose prose-xl prose-slate rich-text mx-auto mb-40 max-w-3xl space-y-8 leading-relaxed">
+                <div className="prose prose-xl prose-slate rich-text mx-auto mb-40 max-w-3xl space-y-8 leading-relaxed rich-text">
                     <div
                         dangerouslySetInnerHTML={{ __html: sanitizeContent(blog.content) }}
                     />

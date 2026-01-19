@@ -17,7 +17,7 @@ interface PriceRangeSliderProps {
     primaryColor?: string;
 }
 
-const priceSteps = [0, 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000];
+const priceSteps = [0, 5000, 10000, 15000, 20000, 30000, 50000, 75000, 100000, 150000, 200000, 250000, 300000];
 
 export default function PriceRangeSlider({
     value,

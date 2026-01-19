@@ -38,7 +38,7 @@ export const useProductsFilter = () => {
   const [selectedSubcategory, setSelectedSubcategory] = useState<string>("all");
   const [priceRange, setPriceRange] = useState<PriceRange>({
     min: 0,
-    max: 100000,
+    max: 300000,
   });
   const [sortBy, setSortBy] = useState<string>("featured");
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -72,7 +72,7 @@ export const useProductsFilter = () => {
     setDebouncedSearchQuery(newSearchQuery);
     setPriceRange({
       min: Number(params.get("min_price")) || 0,
-      max: Number(params.get("max_price")) || 100000,
+      max: Number(params.get("max_price")) || 300000,
     });
     isMounted.current = true;
   }, [searchParams]);
@@ -97,7 +97,7 @@ export const useProductsFilter = () => {
     if (debouncedSearchQuery) params.set("search", debouncedSearchQuery);
     if (sortBy !== "featured") params.set("sort", sortBy);
     if (priceRange.min > 0) params.set("min_price", String(priceRange.min));
-    if (priceRange.max < 100000)
+    if (priceRange.max < 300000)
       params.set("max_price", String(priceRange.max));
     if (currentPage > 1) params.set("page", String(currentPage));
 
@@ -178,7 +178,7 @@ export const useProductsFilter = () => {
   const handleClearAll = useCallback(() => {
     setSelectedCategory("all");
     setSelectedSubcategory("all");
-    setPriceRange({ min: 0, max: 100000 });
+    setPriceRange({ min: 0, max: 300000 });
     setSortBy("featured");
     setSearchQuery("");
     setCurrentPage(1);
