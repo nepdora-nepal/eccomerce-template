@@ -11,6 +11,7 @@ import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
 import { useSiteConfig } from '@/hooks/use-site-config';
 import Image from 'next/image';
+import { Skeleton } from '../ui/skeleton';
 
 export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => {
     const { itemCount } = useCart();
@@ -47,8 +48,8 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
                                 />
                             </div>
                         ) : (
-                            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                                <span className="text-primary-foreground font-bold text-xl italic">S</span>
+                            <div className="w-10 h-10">
+                                <Skeleton className="w-10 h-10" />
                             </div>
                         )}
                     </Link>
