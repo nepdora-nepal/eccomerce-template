@@ -96,11 +96,16 @@ export default function Hero() {
                     <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
                         Discover premium products that blend innovation with elegance. Curated collections for those who demand excellence.
                     </p>
-                    <Link href="/collections">
-                        <Button size="lg" className="h-auto group px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                    <Link href="/collections" className="inline-flex justify-center">
+                        <Button
+                            size="lg"
+                            className="h-auto group px-8 py-4 text-white rounded-xl font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 flex items-center gap-2"
+                        >
                             Shop Collection
                             <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                        </Button></Link>
+                        </Button>
+                    </Link>
+
                 </div>
             </section>
         );

@@ -9,6 +9,8 @@ import { useAuth } from '../../hooks/use-auth';
 import { useWishlist } from '@/hooks/use-wishlist';
 import { Button } from '../ui/button';
 import { cn } from '@/lib/utils';
+import { useSiteConfig } from '@/hooks/use-site-config';
+import Image from 'next/image';
 
 export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => {
     const { itemCount } = useCart();
@@ -17,6 +19,7 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
     const wishlistCount = wishlistItems?.length || 0;
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProfileOpen, setIsProfileOpen] = useState(false);
+    const { data: config } = useSiteConfig();
     const router = useRouter();
 
     const navLinks = [
@@ -33,10 +36,21 @@ export const Header: React.FC<{ onCartOpen: () => void }> = ({ onCartOpen }) => 
                 <div className="flex justify-between items-center h-20">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2">
-                        <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
-                            <span className="text-primary-foreground font-bold text-xl italic">S</span>
-                        </div>
-                        <span className="text-2xl font-bold tracking-tight text-foreground hidden sm:block">SastoBazaar<span className="text-primary">.</span></span>
+                        {config?.logo ? (
+                            <div className="relative overflow-hidden">
+                                <Image
+                                    src={config.logo}
+                                    alt={config.business_name || "Logo"}
+                                    width={200}
+                                    height={200}
+                                    className="object-contain"
+                                />
+                            </div>
+                        ) : (
+                            <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20">
+                                <span className="text-primary-foreground font-bold text-xl italic">S</span>
+                            </div>
+                        )}
                     </Link>
 
                     {/* Desktop Nav */}

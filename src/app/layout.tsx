@@ -8,10 +8,19 @@ import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export const metadata: Metadata = {
-  title: "SastoBazaar - Premium Shopping Experience",
-  description: "Your ultimate solution for managing sales and customer relationships with cutting-edge technology.",
-};
+import { siteConfigAPI } from "@/services/api/site-config";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const config = await siteConfigAPI.getSiteConfig();
+
+  return {
+    title: config?.business_name || "SastoBazaar - Premium Shopping Experience",
+    description: config?.business_description || "Your ultimate solution for managing sales and customer relationships with cutting-edge technology.",
+    icons: {
+      icon: config?.favicon || "/favicon.ico",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
