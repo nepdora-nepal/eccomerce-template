@@ -44,6 +44,41 @@ import { checkoutFormSchema, CheckoutFormValues } from "@/schemas/chekout.form";
 import { PromoCodeInput } from "@/components/products/PromoCodeInput";
 import { PromoCode } from "@/types/promo-code-validate";
 import { useDeliveryChargeCalculator } from "@/hooks/use-delivery-charge-calculator";
+import { Skeleton } from "@/components/ui/skeleton";
+
+const CheckoutSuccessSkeleton = () => (
+    <div className="max-w-4xl mx-auto px-4 py-12 md:py-20 space-y-10">
+        <div className="flex flex-col items-center space-y-4 animate-pulse">
+            <Skeleton className="w-20 h-20 rounded-full" />
+            <Skeleton className="h-10 w-64 md:w-96" />
+            <div className="space-y-2 text-center w-full max-w-lg">
+                <Skeleton className="h-4 w-full" />
+                <Skeleton className="h-4 w-2/3 mx-auto" />
+            </div>
+            <div className="pt-4 flex gap-4">
+                <Skeleton className="h-12 w-32 rounded-xl" />
+                <Skeleton className="h-12 w-40 rounded-xl" />
+            </div>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="md:col-span-2 space-y-8">
+                <div className="space-y-4">
+                    <Skeleton className="h-8 w-40" />
+                    <Skeleton className="h-[200px] w-full rounded-3xl" />
+                </div>
+                <div className="space-y-4">
+                    <Skeleton className="h-8 w-40" />
+                    <Skeleton className="h-[150px] w-full rounded-3xl" />
+                </div>
+            </div>
+
+            <div className="space-y-6">
+                <Skeleton className="h-[300px] w-full rounded-3xl" />
+            </div>
+        </div>
+    </div>
+);
 
 const CheckoutContent = () => {
     const router = useRouter();
@@ -55,6 +90,7 @@ const CheckoutContent = () => {
     );
     const [openBillingCity, setOpenBillingCity] = useState(false);
     const [openShippingCity, setOpenShippingCity] = useState(false);
+    const [isOrderPlaced, setIsOrderPlaced] = useState(false);
 
     const {
         register,
@@ -168,6 +204,7 @@ const CheckoutContent = () => {
                 includeToken: isAuthenticated,
             });
 
+            setIsOrderPlaced(true);
             toast.success("Order placed successfully! Pay on delivery.");
             clearCart();
             router.push(`/checkout/success/${order.id}`); // Redirect to success page
@@ -307,6 +344,10 @@ const CheckoutContent = () => {
             </div>
         </div>
     );
+
+    if (isOrderPlaced) {
+        return <CheckoutSuccessSkeleton />;
+    }
 
     if (cartItems.length === 0) {
         return (
