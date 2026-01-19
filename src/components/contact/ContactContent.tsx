@@ -1,17 +1,55 @@
 "use client";
 
-import React from 'react';
-import { Send, } from 'lucide-react';
+import React, { useState } from 'react';
+import { Send, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
+import { useSubmitContactForm } from '@/hooks/use-contact';
+import { useSiteConfig } from '@/hooks/use-site-config';
 
 const ContactContent = () => {
+    const { data: siteConfig } = useSiteConfig();
+    const { mutate: submitContact, isPending } = useSubmitContactForm();
+
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone_number: '',
+        message: ''
+    });
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { id, value } = e.target;
+        // Map 'phone' input id to 'phone_number' state key if necessary, 
+        // but it's easier to just use 'phone_number' as the id
+        setFormData(prev => ({
+            ...prev,
+            [id]: value
+        }));
+    };
+
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        toast.success("Message sent successfully! Our team will contact you soon.");
-        (e.target as HTMLFormElement).reset();
+
+        submitContact({
+            ...formData,
+            // Ensure empty strings are treated as needed, hook handles transforms
+        }, {
+            onSuccess: () => {
+                toast.success("Message sent successfully! Our team will contact you soon.");
+                setFormData({
+                    name: '',
+                    email: '',
+                    phone_number: '',
+                    message: ''
+                });
+            },
+            onError: () => {
+                toast.error("Failed to send message. Please try again.");
+            }
+        });
     };
 
     return (
@@ -35,10 +73,26 @@ const ContactContent = () => {
                     <div className="lg:col-span-5 space-y-12">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-6">
                             {[
-                                { title: "Emails Us", value: "concierge@SastoBazaar.com", sub: "Response within 24 hours" },
-                                { title: "Call Us", value: "+1 (555) 000-0000", sub: "Mon-Fri, 9am - 6pm EST" },
-                                { title: "Visit Us", value: "721 Luxury Ave, NY", sub: "Flagship Showroom" },
-                                { title: "Support Hours", value: "24/7 Assistance", sub: "For premium members" },
+                                {
+                                    title: "Emails Us",
+                                    value: siteConfig?.email || "concierge@SastoBazaar.com",
+                                    sub: "Response within 24 hours"
+                                },
+                                {
+                                    title: "Call Us",
+                                    value: siteConfig?.phone || "+1 (555) 000-0000",
+                                    sub: "Mon-Fri, 9am - 6pm EST"
+                                },
+                                {
+                                    title: "Visit Us",
+                                    value: siteConfig?.address || "721 Luxury Ave, NY",
+                                    sub: "Flagship Showroom"
+                                },
+                                {
+                                    title: "Support Hours",
+                                    value: siteConfig?.working_hours || "24/7 Assistance",
+                                    sub: "For premium members"
+                                },
                             ].map((item, i) => (
                                 <div key={i} className="group p-8 rounded-3xl bg-slate-50 border border-slate-100 hover:border-indigo-100 hover:bg-white hover:shadow-xl hover:shadow-indigo-100/50 transition-all duration-500">
 
@@ -62,22 +116,46 @@ const ContactContent = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
                                         <Label htmlFor="name">Full Name</Label>
-                                        <Input id="name" placeholder="John Doe" required className="h-14 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 transition-all font-medium" />
+                                        <Input
+                                            id="name"
+                                            value={formData.name}
+                                            onChange={handleInputChange}
+                                            placeholder="John Doe"
+                                            required
+                                            className="h-14 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 transition-all font-medium"
+                                        />
                                     </div>
                                     <div className="space-y-2">
                                         <Label htmlFor="email">Email Address</Label>
-                                        <Input id="email" type="email" placeholder="john@example.com" required className="h-14 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 transition-all font-medium" />
+                                        <Input
+                                            id="email"
+                                            type="email"
+                                            value={formData.email}
+                                            onChange={handleInputChange}
+                                            placeholder="john@example.com"
+                                            required
+                                            className="h-14 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 transition-all font-medium"
+                                        />
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <Label htmlFor="subject">Subject</Label>
-                                    <Input id="subject" placeholder="How can we help?" required className="h-14 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 transition-all font-medium" />
+                                    <Label htmlFor="phone_number">Phone Number</Label>
+                                    <Input
+                                        id="phone_number"
+                                        type="tel"
+                                        value={formData.phone_number}
+                                        onChange={handleInputChange}
+                                        placeholder="+1 (555) 000-0000"
+                                        className="h-14 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 transition-all font-medium"
+                                    />
                                 </div>
                                 <div className="space-y-2">
                                     <Label htmlFor="message">Message</Label>
                                     <textarea
                                         id="message"
                                         rows={6}
+                                        value={formData.message}
+                                        onChange={handleInputChange}
                                         placeholder="Tell us what you need..."
                                         required
                                         className="w-full p-5 rounded-2xl bg-slate-50 border-transparent focus:bg-white focus:border-indigo-600 outline-none transition-all font-medium resize-none"
@@ -85,9 +163,18 @@ const ContactContent = () => {
                                 </div>
                                 <Button
                                     type="submit"
-                                    className="w-full h-16 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-lg font-bold shadow-xl shadow-slate-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3"
+                                    disabled={isPending}
+                                    className="w-full h-16 bg-slate-900 hover:bg-slate-800 text-white rounded-2xl text-lg font-bold shadow-xl shadow-slate-200 transition-all active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-70 disabled:cursor-not-allowed"
                                 >
-                                    Send Message <Send size={20} />
+                                    {isPending ? (
+                                        <>
+                                            Sending... <Loader2 className="animate-spin" size={20} />
+                                        </>
+                                    ) : (
+                                        <>
+                                            Send Message <Send size={20} />
+                                        </>
+                                    )}
                                 </Button>
                             </form>
                         </div>
